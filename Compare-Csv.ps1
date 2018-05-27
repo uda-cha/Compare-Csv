@@ -39,12 +39,12 @@ foreach ( $targetheader in $headerarray )
   if ( $longheader -contains $targetheader )
     {
     
-    #Windiows7‘Î‰žB10‚ÌPSv3‚È‚ç$A.$targetheader‚ÅOK
+    #Windiows7‘Î‰žB10‚ÌPSv5‚È‚ç$A.$targetheader‚ÅOK
     [string]( $A | Select-Object $targetheader | Format-Table -Wrap -AutoSize | Out-String ) > longA.txt
     [string]( $B | Select-Object $targetheader | Format-Table -Wrap -AutoSize | Out-String ) > longB.txt
       Compare-Object (Get-Content .\longA.txt) (Get-Content .\longB.txt) `
         | Format-Table -Wrap -AutoSize -Property SideIndicator,@{name="$targetheader";expression={$_.InputObject}}
-      Remove-Item "Long[A|B].txt"
+      Remove-Item "long[A|B].txt"
     Write-Output "-------------------------"
     Write-Output ""
     continue
